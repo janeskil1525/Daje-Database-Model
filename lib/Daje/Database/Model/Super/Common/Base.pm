@@ -83,6 +83,23 @@ sub load_a_list($self, $table, $select, $key_value) {
     return $result;
 }
 
+sub load_a_full_list($self, $table, $select) {
+    my $result->{result} = 1;
+    try {
+        my $load = $self->db->select(
+            $table,
+            $select
+        );
+        $result->{data} = {};
+        $result->{data} = $load->hashes if $load and $load->rows > 0;
+    } catch ($e) {
+        $result->{result} = 0;
+        $result->{data} = "";
+        $result->{error} = $e;
+    };
+
+    return $result;
+}
 sub insert($self, $table, $data, $primary_key_name) {
     my $result->{result} = 1;
     try {
@@ -109,7 +126,7 @@ sub update($self, $table, $data, $keys) {
     } catch($e) {
         $result->{error} = $e;
         $result->{result} = 0;
-    }
+    };
     return $result;
 }
 

@@ -2,5 +2,6 @@ Revision history for Perl extension Daje-Database-Model
 
 {{$NEXT}}
 
+    - 2025-10-04 Bug fix
     - original version
 
