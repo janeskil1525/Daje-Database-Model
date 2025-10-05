@@ -54,11 +54,11 @@ sub load_fkey($self, $table, $select, $foreign_key_name, $foreign_key) {
                 $select,
             {$foreign_key_name => $foreign_key}
         );
-        $result->{data} = {};
+        $result->{data} = [];
         $result->{data} = $load->hashes if $load and $load->rows > 0;
     } catch ($e) {
         $result->{result} = 0;
-        $result->{data} = "";
+        $result->{data} = [];
         $result->{error} = $e;
     };
     return $result;

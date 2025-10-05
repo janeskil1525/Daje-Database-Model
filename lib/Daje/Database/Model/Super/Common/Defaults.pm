@@ -39,7 +39,7 @@ has 'users_pkey' => 'System';
 sub update_defaults($self, $data) {
     $data->{editnum}++;
     $data->{moddatetime} = strftime("%F %T", localtime);
-    $data->{editnum} = $self->users_pkey();
+    $data->{modby} = $self->users_pkey();
 
     return $data;
 }
