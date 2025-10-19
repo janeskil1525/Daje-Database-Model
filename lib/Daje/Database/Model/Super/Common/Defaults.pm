@@ -43,4 +43,15 @@ sub update_defaults($self, $data) {
 
     return $data;
 }
+
+sub insert_defaults($self, $data) {
+    delete %$data{$self->primary_key_name()} if exists $data->{$self->primary_key_name()};
+    delete %$data{editnum} if exists $data->{editnum};
+    delete %$data{insby} if exists $data->{insby};
+    delete %$data{insdatetime} if exists $data->{insdatetime};
+    delete %$data{modby} if exists $data->{modby};
+    delete %$data{moddatetime} if exists $data->{moddatetime};
+    return $data;
+}
+
 1;
